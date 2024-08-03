@@ -10,7 +10,6 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./node_modules/flowbite/**/*.js",
   ],
   prefix: "",
   theme: {
@@ -114,7 +113,6 @@ const config = {
     tailwindAnimate,
     scrollbar({ nocompatible: true }),
     require("tailwindcss-aria-attributes"),
-    require("flowbite/plugin"),
   ],
 } satisfies Config;
 

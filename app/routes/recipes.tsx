@@ -64,7 +64,7 @@ export default function Recipes(recipe: RecipeShape) {
   return (
     <div className="recipes h-[100vh] flex flex-col items-center outline outline-2 outline-emerald-800">
       <h1 className="text-2xl font-bold mb-4">Recipes</h1>
-      <div className="relative w-[300px] flex-1 border-2 border-amber-700">
+      <div className="relative w-[300px] flex-1">
         <AnimatePresence>
           {recipes.map((recipe, index) => (
             <Recipe

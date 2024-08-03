@@ -37,7 +37,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     { name: "title", content: "ShakerDIY" },
     {
       name: "description",
-      content: "A DIY cocktail recipe app built with Remix and Vercel"
+      content: "A DIY cocktail recipe app built with Remix and Vercel",
+    },
     // { name: 'twitter:card', content: 'summary_large_image' },
     // { name: 'twitter:site', content: '@vercel' },
     // { name: 'twitter:creator', content: '@vercel' },
