@@ -53,18 +53,12 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Recipes(recipe: RecipeShape) {
   const { recipes } = useLoaderData<LoaderData>();
-  const [selectedRecipe, setSelectedRecipe] = useState<RecipeShape | null>(
-    null
-  );
-  console.log("selectedRecipe", selectedRecipe);
+  const [selectedRecipeId, setSelectedRecipeId] = useState<number | null>(null);
+  console.log("selectedRecipe", selectedRecipeId);
 
-  const handleSelectRecipe = (recipe: RecipeShape) => {
+  const toggleRecipe = (id: number) => {
     console.log("in select", recipe);
-    setSelectedRecipe(recipe);
-  };
-
-  const handleDeselectRecipe = () => {
-    setSelectedRecipe(null);
+    setSelectedRecipeId((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -72,29 +66,14 @@ export default function Recipes(recipe: RecipeShape) {
       <h1 className="text-2xl font-bold mb-4">Recipes</h1>
       <div className="relative w-[300px] flex-1 border-2 border-amber-700">
         <AnimatePresence>
-          {recipes.map((recipe) => (
-            <motion.div
+          {recipes.map((recipe, index) => (
+            <Recipe
               key={recipe.id}
-              className="absolute w-full cursor-pointer"
-              style={{
-                top: selectedRecipe ? 0 : `${recipes.indexOf(recipe) * 40}px`,
-              }} // Adjust the spacing as needed
-              layout
-              initial={{ top: `${recipes.indexOf(recipe) * 40}px` }}
-              animate={
-                selectedRecipe && selectedRecipe.id === recipe.id
-                  ? { top: 0, height: "100%" }
-                  : { height: "auto" }
-              }
-              exit={{
-                top: `${recipes.indexOf(recipe) * 40}px`,
-                height: "auto",
-              }}
-              transition={{ duration: 0.5 }}
-              onClick={() => handleSelectRecipe(recipe)}
-            >
-              <Recipe {...recipe} onClick={handleDeselectRecipe} />
-            </motion.div>
+              index={index}
+              isSelected={selectedRecipeId === recipe.id}
+              {...recipe}
+              onToggle={toggleRecipe}
+            />
           ))}
         </AnimatePresence>
       </div>

@@ -1,8 +1,8 @@
+import scrollbar from "tailwind-scrollbar";
+import type { Config } from "tailwindcss";
 import tailwindAnimate from "tailwindcss-animate";
 import colors from "tailwindcss/colors";
-import tailwindAriaAttributes from "tailwindcss-aria-attributes";
 
-/** @type {import('tailwindcss').Config} */
 const config = {
   darkMode: ["class"],
   content: [
@@ -10,8 +10,17 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./node_modules/flowbite/**/*.js",
   ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
         lightBg: "#f3f3f3",
@@ -101,7 +110,12 @@ const config = {
       },
     },
   },
-  plugins: [tailwindAnimate, tailwindAriaAttributes],
-};
+  plugins: [
+    tailwindAnimate,
+    scrollbar({ nocompatible: true }),
+    require("tailwindcss-aria-attributes"),
+    require("flowbite/plugin"),
+  ],
+} satisfies Config;
 
 export default config;

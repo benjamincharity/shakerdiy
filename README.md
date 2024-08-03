@@ -1,38 +1,42 @@
-# Remix
+TODO
 
-This directory is a brief example of a [Remix](https://remix.run/docs) site that can be deployed to Vercel with zero configuration.
 
-To get started, run the Remix cli with this template
-
-```sh
-npx create-remix@latest --template vercel/vercel/examples/remix
+```
+Maximus - 7pm ET week-daily (last 14 days)
+AgelessRx - 6am - ET week-daily (last 14 days)
+TeleMed2U - 6am ET weekly on Monday (last 14 days)
+Rx Harmony - 6am ET week-daily (last 14 days)
 ```
 
-## Deploy Your Own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/remix&template=remix)
-
-_Live Example: https://remix-run-template.vercel.app_
-
-You can also deploy using the [Vercel CLI](https://vercel.com/docs/cli):
-
-```sh
-npm i -g vercel
-vercel
+```
+Maximus, backendcs <backendcs@maximustribe.com>
+AgelessRx, AgelessRx Partners <partners@agelessrx.com>
+Rx Harmony, Rx-Harmony <hello@rx-harmony.com>
 ```
 
-## Development
-
-To run your Remix app locally, make sure your project's local dependencies are installed:
-
-```sh
-npm install
+TODO: add 'real' schedule back
+```json
+{
+  "version": 2,
+  "crons": [
+    {
+      "path": "/api/shipping-report-email-cron/maximus",
+      "schedule": "0 19 * * 1-5"
+    },
+    {
+      "path": "/api/shipping-report-email-cron/agelessrx",
+      "schedule": "0 6 * * 1-5"
+    },
+    {
+      "path": "/api/shipping-report-email-cron/telemed2u",
+      "schedule": "0 6 * * 1"
+    },
+    {
+      "path": "/api/shipping-report-email-cron/rxharmony",
+      "schedule": "0 6 * * 1-5"
+    }
+  ]
+}
 ```
 
-Afterwards, start the Remix development server like so:
-
-```sh
-npm run dev
-```
-
-Open up [http://localhost:5173](http://localhost:5173) and you should be ready to go!
+`0 9 * * *` === 4am EST

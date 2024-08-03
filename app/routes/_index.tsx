@@ -1,5 +1,13 @@
+// routes/_index.tsx
+
+export async function loader() {
+  return null;
+}
+
 export default function Index() {
   return (
-    <div className={"index-view outline-2 outline-cyan-500"}>INDEX VIEW</div>
+    <main>
+      <p>Are you supposed to be here?</p>
+    </main>
   );
 }

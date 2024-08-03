@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "crons": [
+    {
+      "path": "/api/run-cron-jobs/server",
+      "schedule": "0 9 * * *"
+    }
+  ]
+}

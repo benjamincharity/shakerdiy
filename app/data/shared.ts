@@ -10,4 +10,4 @@ export const DEFAULT_HEADERS = {
 
 export const BASE_API_URL = process.env.VERCEL_URL?.includes("local")
   ? "http://localhost:3000"
-  : "https://shakerdiy.vercel.app";
+  : "https://serverless-reporting.vercel.app";
