@@ -5,7 +5,10 @@ export interface Ingredient {
 }
 
 export interface Presentation {
+  color: string;
+  garnish: string;
   ice: string;
+  vessel: string;
 }
 
 export interface RecipeShape {
