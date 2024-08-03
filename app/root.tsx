@@ -34,12 +34,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
     { name: "charset", content: "utf-8" },
-    { name: "title", content: "Serverless Reporting" },
+    { name: "title", content: "ShakerDIY" },
     {
       name: "description",
-      content:
-        "A serverless reporting application built with Remix and Vercel.",
-    },
+      content: "A DIY cocktail recipe app built with Remix and Vercel"
     // { name: 'twitter:card', content: 'summary_large_image' },
     // { name: 'twitter:site', content: '@vercel' },
     // { name: 'twitter:creator', content: '@vercel' },
