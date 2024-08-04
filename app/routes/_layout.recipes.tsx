@@ -14,7 +14,7 @@ interface LoaderData {
   recipes: RecipeShape[];
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async () => {
   return json({ recipes: drinkRecipes });
 };
 
