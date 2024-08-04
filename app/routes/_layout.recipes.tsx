@@ -7,7 +7,8 @@ import { useCallback, useEffect, useState } from "react";
 import { drinkRecipes } from "~/data/drinks";
 import { Menu } from "lucide-react";
 import { clsx } from "clsx";
-import { HamburgerButton } from "~/components/hamburger/hamburger";
+import { HamburgerButton } from "~/components/hamburger";
+import { NewRecipeButton } from "~/components/ui/new-recipe-button";
 
 interface LoaderData {
   recipes: RecipeShape[];
@@ -97,7 +98,7 @@ export default function Recipes() {
           </motion.div>
           <div
             className={clsx(
-              `absolute flex justify-between h-11 items-center bottom-0 left-0 right-0`
+              `absolute flex pr-2 text-black justify-between h-11 items-center bottom-0 left-0 right-0`
             )}
           >
             <HamburgerButton
@@ -106,6 +107,8 @@ export default function Recipes() {
             >
               <Menu />
             </HamburgerButton>
+
+            <NewRecipeButton />
           </div>
         </motion.div>
       </div>

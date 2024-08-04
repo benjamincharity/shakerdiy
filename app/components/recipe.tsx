@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { getReadableColor } from "@exhuma/readable-color";
-import { Checkbox } from "~/components/checkbox";
+import { Checkbox } from "~/components/ui/checkbox";
 
 export function Recipe({
   title,
@@ -20,7 +20,6 @@ export function Recipe({
   isSelected?: boolean;
   index: number;
 }) {
-  const easing = [0.42, 0, 0.58, 1];
   const [startY, setStartY] = useState<number | null>(null);
   const readableColor = getReadableColor(background);
 
@@ -61,7 +60,7 @@ export function Recipe({
       onDragEnd={handleDragEnd}
       onDragStart={handleDragStart}
       style={{
-        zIndex: isSelected ? 2 : 1,
+        zIndex: isSelected ? 20 : 1,
         color: readableColor,
         bottom: 0,
         height: isSelected ? "100%" : "200px",
@@ -81,10 +80,15 @@ export function Recipe({
               const ingredientId = `${ingredient.name}-${id}`;
               return (
                 <li key={ingredientId}>
-                  <label className={"flex gap-2"} htmlFor={ingredientId}>
+                  <label
+                    className={"flex items-center gap-2"}
+                    htmlFor={ingredientId}
+                  >
                     <Checkbox id={ingredientId} />
-                    <div>{ingredient.quantity}</div>
-                    <div>{ingredient.measurement}</div>
+                    <div className={"flex"}>
+                      <div>{ingredient.quantity}</div>
+                      <div>{ingredient.measurement}</div>
+                    </div>
                     <div>{ingredient.name}</div>
                   </label>
                 </li>
