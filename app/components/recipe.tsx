@@ -4,6 +4,7 @@ import { clsx } from "clsx";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { getReadableColor } from "@exhuma/readable-color";
+import { Checkbox } from "~/components/checkbox";
 
 export function Recipe({
   title,
@@ -38,18 +39,23 @@ export function Recipe({
       onToggle(id);
     }
   };
+  const cardBase = "absolute inset-0 rounded-t-2xl z-[1]";
+  const topOffset = index * 54;
 
   return (
     <motion.div
       animate={isSelected ? { top: 0, height: "100%" } : { height: "auto" }}
-      className="absolute w-full flex flex-col cursor-pointer recipe z-[1] bg-oat drop-shadow-recipe rounded-lg px-4 py-2 mb-4"
-      drag="y"
+      className={clsx(
+        cardBase,
+        "w-full min-h-[300px] flex flex-col cursor-pointer recipe bg-oat px-4 py-2 mb-4"
+      )}
+      drag={isSelected ? "y" : false}
       dragConstraints={{ top: 0, bottom: 0 }}
       exit={{
-        top: `${index * 40}px`,
-        height: "auto",
+        top: `${topOffset}px`,
+        height: "200px",
       }}
-      initial={{ height: "auto", top: `${index * 40}px` }}
+      initial={{ height: "200px", top: `${topOffset}px` }}
       layout
       onClick={() => !isSelected && onToggle(id)}
       onDragEnd={handleDragEnd}
@@ -58,35 +64,39 @@ export function Recipe({
         zIndex: isSelected ? 2 : 1,
         color: readableColor,
         bottom: 0,
-        height: "100%",
+        height: isSelected ? "100%" : "200px",
       }}
       transition={{
         duration: 0.2,
         ease: [0, 0.71, 0.2, 1.01],
       }}
     >
-      <div
-        className={"absolute inset-0 opacity-50 rounded-lg z-[1]"}
-        style={{ backgroundColor: background }}
-      />
       <div className={"relative flex-1 z-[2]"}>
-        <h2 className="text-xl text-center font-cardo font-bold mb-2">
+        <h2 className="text-xl text-center font-cardo font-bold my-2">
           {title}
         </h2>
-        <ul className={"grid grid-cols-1 gap-1"}>
-          {ingredients.map((ingredient) => {
-            return (
-              <li key={ingredient.name + id}>
-                {ingredient.quantity} {ingredient.measurement} {ingredient.name}
-              </li>
-            );
-          })}
-        </ul>
+        {isSelected && (
+          <ul className={"grid grid-cols-1 gap-1"}>
+            {ingredients.map((ingredient) => {
+              const ingredientId = `${ingredient.name}-${id}`;
+              return (
+                <li key={ingredientId}>
+                  <label className={"flex gap-2"} htmlFor={ingredientId}>
+                    <Checkbox id={ingredientId} />
+                    <div>{ingredient.quantity}</div>
+                    <div>{ingredient.measurement}</div>
+                    <div>{ingredient.name}</div>
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        )}
         {isSelected && <p>{directions}</p>}
       </div>
 
       {isSelected && (
-        <div className="flex items-center justify-between relative z-[1]">
+        <div className="flex items-center justify-between relative z-[2]">
           <button onClick={() => onToggle(id)}>
             <ChevronDown />
           </button>
@@ -94,6 +104,11 @@ export function Recipe({
           <button>Edit</button>
         </div>
       )}
+
+      <div
+        className={clsx(cardBase, "opacity-50 drop-shadow-recipe")}
+        style={{ backgroundColor: background }}
+      />
     </motion.div>
   );
 }

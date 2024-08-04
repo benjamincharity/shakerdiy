@@ -3,13 +3,8 @@ import { Menu } from "lucide-react";
 
 export default function Layout() {
   return (
-    <div className={"h-[100vh] flex flex-col"}>
+    <div className={"h-[100dvh] flex flex-col"}>
       <Outlet />
-      <footer>
-        <button>
-          <Menu />
-        </button>
-      </footer>
     </div>
   );
 }
